@@ -1,99 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Designer's Shift — The shift is personal.</title>
-  <meta name="description" content="A weekly newsletter for designers, PMs, and tech leaders who want their expertise to compound — not just clock in." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <meta name="description" content="A weekly newsletter for designers, PMs, and tech leaders who want their expertise to compound — not just clock in.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tds.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --teal: #0C5446;
-      --teal-light: #0e6655;
-      --orange: #FF6700;
-      --cream: #FCFAEF;
-      --sand: #DBD0BD;
-      --ink: #1A1A15;
-      --serif: 'Young Serif', Georgia, serif;
-      --sans: 'Instrument Sans', system-ui, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 17px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(252, 250, 239, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(12, 84, 70, 0.1);
-      transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-
-    .nav-wordmark {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--teal);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-    }
-
-    .nav-wordmark span {
-      color: var(--orange);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover { color: var(--teal); }
-
-    .nav-cta {
-      background: var(--teal) !important;
-      color: var(--cream) !important;
-      padding: 0.5rem 1.25rem;
-      border-radius: 100px;
-      font-weight: 600 !important;
-      transition: background 0.2s ease, transform 0.2s cubic-bezier(0.32, 0.72, 0, 1) !important;
-    }
-
-    .nav-cta:hover {
-      background: var(--teal-light) !important;
-      transform: translateY(-1px);
-    }
+    /* ── Page-specific styles ── */
 
     /* HERO */
     .hero {
@@ -101,24 +18,24 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding-top: 64px;
+      padding-top: var(--nav-h);
       overflow: hidden;
     }
 
     .hero-left {
-      padding: 6rem 4rem 6rem 6rem;
+      padding: 6rem 4rem 6rem 3rem;
       opacity: 0;
       transform: translateY(24px);
-      animation: fadeUp 0.9s cubic-bezier(0.32, 0.72, 0, 1) 0.1s forwards;
+      animation: fadeUp 0.9s var(--ease) 0.1s forwards;
     }
 
-    .eyebrow {
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: rgba(12, 84, 70, 0.08);
       color: var(--teal);
-      font-size: 0.7rem;
+      font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -132,9 +49,10 @@
       height: 6px;
       background: var(--orange);
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    h1 {
+    .hero h1 {
       font-family: var(--serif);
       font-size: clamp(2.5rem, 4vw, 3.75rem);
       line-height: 1.1;
@@ -143,10 +61,7 @@
       margin-bottom: 1.5rem;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--orange);
-    }
+    .hero h1 em { font-style: italic; color: var(--orange); }
 
     .hero-sub {
       font-size: 1.125rem;
@@ -162,64 +77,23 @@
       max-width: 440px;
     }
 
-    .hero-input {
-      flex: 1;
-      padding: 0.85rem 1.25rem;
-      border: 1.5px solid rgba(12, 84, 70, 0.2);
-      border-radius: 100px;
-      background: white;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .hero-input:focus { border-color: var(--teal); }
-    .hero-input::placeholder { color: rgba(26,26,21,0.35); }
-
-    .btn-primary {
-      background: var(--teal);
-      color: var(--cream);
-      border: none;
-      padding: 0.85rem 1.5rem;
-      border-radius: 100px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-
-    .btn-primary:hover {
-      background: var(--teal-light);
-      transform: translateY(-2px);
-    }
-
     .hero-meta {
       margin-top: 1.25rem;
       font-size: 0.8rem;
-      color: rgba(26,26,21,0.45);
+      color: rgba(26, 26, 21, 0.45);
     }
 
     .hero-right {
       position: relative;
       height: 100%;
+      min-height: 100dvh;
       background: var(--teal);
       display: flex;
       align-items: flex-end;
       justify-content: center;
       overflow: hidden;
       opacity: 0;
-      animation: fadeIn 1s cubic-bezier(0.32, 0.72, 0, 1) 0.3s forwards;
-    }
-
-    .hero-stripe {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: var(--orange);
+      animation: fadeIn 1s var(--ease) 0.3s forwards;
     }
 
     .hero-mascot {
@@ -234,12 +108,13 @@
       position: absolute;
       top: 3rem;
       right: 2.5rem;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 12px;
       padding: 1rem 1.25rem;
       color: var(--cream);
       text-align: right;
+      z-index: 3;
     }
 
     .hero-issue-badge .label {
@@ -261,10 +136,11 @@
     /* PROOF BAR */
     .proof-bar {
       background: var(--ink);
-      padding: 1.25rem 6rem;
+      padding: 1.25rem 3rem;
       display: flex;
       align-items: center;
       gap: 3rem;
+      overflow-x: auto;
       opacity: 0;
       animation: fadeIn 0.8s ease 0.8s forwards;
     }
@@ -273,40 +149,22 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      color: rgba(252,250,239,0.6);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
+      color: rgba(252, 250, 239, 0.6);
+      font-size: 0.8125rem;
+      white-space: nowrap;
     }
 
     .proof-dot {
-      width: 5px; height: 5px;
-      background: var(--orange);
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
+      background: var(--orange);
       flex-shrink: 0;
     }
 
     /* SECTIONS */
     section {
-      padding: 7rem 6rem;
-    }
-
-    .section-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3vw, 2.75rem);
-      color: var(--teal);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
+      padding: 6rem 3rem;
     }
 
     /* WHAT YOU GET */
@@ -314,302 +172,235 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .what-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
     }
 
     .what-left p {
-      color: rgba(26,26,21,0.7);
-      margin-bottom: 1.25rem;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
     }
 
-    .features {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+    .features { display: flex; flex-direction: column; gap: 2rem; }
 
     .feature {
-      display: flex;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
       gap: 1.25rem;
-      align-items: flex-start;
+      align-items: start;
       opacity: 0;
-      transform: translateY(16px);
-      transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+      transform: translateY(12px);
+      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
     }
 
-    .feature.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .feature.visible { opacity: 1; transform: translateY(0); }
 
     .feature-num {
       font-family: var(--serif);
       font-size: 1.5rem;
-      color: var(--orange);
+      color: rgba(12, 84, 70, 0.18);
       line-height: 1;
-      flex-shrink: 0;
-      width: 2rem;
+      padding-top: 2px;
     }
 
     .feature-text strong {
       display: block;
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--teal);
-      margin-bottom: 0.25rem;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
     }
 
     .feature-text p {
-      font-size: 0.9rem;
-      color: rgba(26,26,21,0.65);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
     }
 
-    /* THE ISSUE */
+    /* ISSUE PREVIEW */
     .issue-preview {
       background: var(--teal);
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
       position: relative;
-    }
-
-    .issue-stripe {
-      height: 5px;
-      background: var(--orange);
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .issue-inner {
-      padding: 3rem;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 3rem;
       align-items: center;
+      gap: 2rem;
+      padding: 3.5rem;
     }
 
     .issue-label {
-      font-size: 0.65rem;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(252,250,239,0.5);
-      margin-bottom: 0.75rem;
+      color: rgba(252, 250, 239, 0.45);
+      margin-bottom: 1rem;
     }
 
     .issue-title {
       font-family: var(--serif);
-      font-size: 2rem;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
       color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
     }
 
     .issue-body {
-      color: rgba(252,250,239,0.7);
-      font-size: 0.95rem;
+      font-size: 1rem;
+      color: rgba(252, 250, 239, 0.65);
       line-height: 1.7;
-      margin-bottom: 1.75rem;
+      max-width: 520px;
+      margin-bottom: 2rem;
     }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--orange);
-      color: var(--ink);
-      padding: 0.75rem 1.5rem;
+      background: rgba(252, 250, 239, 0.12);
+      border: 1px solid rgba(252, 250, 239, 0.25);
+      color: var(--cream);
+      padding: 0.7rem 1.35rem;
       border-radius: 100px;
-      font-family: var(--sans);
       font-size: 0.875rem;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+      transition: background 0.2s, transform 0.2s var(--ease);
     }
 
-    .btn-secondary:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-secondary:hover { background: rgba(252, 250, 239, 0.2); transform: translateY(-2px); }
 
     .issue-mascot {
-      width: 220px;
+      width: 200px;
       opacity: 0.9;
     }
 
     /* ABOUT STRIP */
     .about-strip {
       background: var(--sand);
-      padding: 5rem 6rem;
+      padding: 4rem 3rem;
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 5rem;
+      gap: 4rem;
       align-items: center;
     }
 
     .about-stat {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .stat-num {
       font-family: var(--serif);
-      font-size: 4rem;
+      font-size: 5rem;
       color: var(--teal);
       line-height: 1;
-      display: block;
+      letter-spacing: -0.03em;
     }
 
     .stat-label {
-      font-size: 0.8rem;
+      font-size: 0.8125rem;
       font-weight: 500;
-      color: rgba(26,26,21,0.55);
-      letter-spacing: 0.06em;
-      display: block;
+      color: var(--ink-muted);
+      line-height: 1.4;
       margin-top: 0.25rem;
     }
 
     .about-text p {
-      font-size: 1.15rem;
-      color: rgba(26,26,21,0.75);
-      line-height: 1.7;
+      font-size: 1rem;
+      color: var(--ink-muted);
+      line-height: 1.75;
       margin-bottom: 1rem;
-      max-width: 600px;
+      max-width: 540px;
     }
 
-    .about-text p:last-child { margin-bottom: 0; }
+    .about-text a {
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .about-text a:hover { opacity: 0.75; }
 
     /* CTA SECTION */
     .cta-section {
       background: var(--teal);
-      padding: 7rem 6rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: var(--orange);
+    .cta-section .section-eyebrow { color: rgba(255, 103, 0, 0.85); }
+
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.875rem;
     }
 
-    .cta-section h2 { color: var(--cream); }
-
     .cta-section .sub {
-      color: rgba(252,250,239,0.65);
-      font-size: 1.1rem;
-      max-width: 520px;
-      margin: 1rem auto 2.5rem;
+      font-size: 1rem;
+      color: rgba(252, 250, 239, 0.6);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
     }
 
     .cta-form {
       display: flex;
       gap: 0.75rem;
-      max-width: 420px;
+      max-width: 440px;
       margin: 0 auto;
     }
-
-    .cta-input {
-      flex: 1;
-      padding: 0.85rem 1.25rem;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 100px;
-      background: rgba(255,255,255,0.1);
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      color: var(--cream);
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .cta-input:focus { border-color: rgba(255,255,255,0.5); }
-    .cta-input::placeholder { color: rgba(252,250,239,0.4); }
-
-    .btn-orange {
-      background: var(--orange);
-      color: var(--ink);
-      border: none;
-      padding: 0.85rem 1.5rem;
-      border-radius: 100px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-
-    .btn-orange:hover { transform: translateY(-2px); opacity: 0.9; }
 
     .cta-meta {
       margin-top: 1rem;
       font-size: 0.8rem;
-      color: rgba(252,250,239,0.35);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--ink);
-      padding: 3rem 6rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-wordmark {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--cream);
-    }
-
-    .footer-wordmark span { color: var(--orange); }
-
-    .footer-tagline {
-      font-size: 0.8rem;
-      color: rgba(252,250,239,0.35);
-      margin-top: 0.25rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: rgba(252,250,239,0.5);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover { color: var(--cream); }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      color: rgba(252, 250, 239, 0.35);
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      nav { padding: 0 1.5rem; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-left {
-        padding: 5rem 1.5rem 3rem;
-      }
-
-      .hero-right {
-        min-height: 360px;
-      }
-
-      .hero-form {
-        flex-direction: column;
-        max-width: 100%;
-      }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 5rem 1.5rem 3rem; }
+      .hero-right { min-height: 360px; }
+      .hero-form { flex-direction: column; max-width: 100%; }
 
       .proof-bar { padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
 
@@ -620,13 +411,10 @@
       .issue-inner { grid-template-columns: 1fr; }
       .issue-mascot { display: none; }
 
-      .about-strip { padding: 4rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; }
+      .about-strip { padding: 3rem 1.5rem; grid-template-columns: 1fr; gap: 2rem; }
 
       .cta-section { padding: 5rem 1.5rem; }
       .cta-form { flex-direction: column; max-width: 100%; }
-
-      footer { padding: 2.5rem 1.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
-      .footer-links { justify-content: center; }
     }
   </style>
 </head>
@@ -634,7 +422,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-wordmark">The Designer's <span>→</span> Shift</a>
+    <a href="index.html" class="nav-wordmark">The Designer's <span class="arrow">→</span> Shift</a>
     <ul class="nav-links">
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Issues</a></li>
@@ -643,29 +431,29 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" style="padding: 0;">
+  <div class="hero">
     <div class="hero-left">
-      <div class="eyebrow">
+      <div class="hero-eyebrow">
         <span class="eyebrow-dot"></span>
         Weekly — Every Friday
       </div>
-      <h1>Your expertise should work<br/><em>harder</em> than you do.</h1>
+      <h1>Your expertise should work<br><em>harder</em> than you do.</h1>
       <p class="hero-sub">A weekly newsletter for designers, PMs, and tech leaders who are done building leverage for everyone else's business. One idea. Under 5 minutes. Every Friday.</p>
       <div class="hero-form">
-        <input type="email" class="hero-input" placeholder="your@email.com" />
-        <a href="https://thedesignersshift.beehiiv.com/subscribe" class="btn-primary" style="text-decoration:none;">Start shifting →</a>
+        <input type="email" class="input" placeholder="your@email.com">
+        <a href="https://thedesignersshift.beehiiv.com/subscribe" class="btn btn-teal btn-sm" style="padding: 0.85rem 1.5rem;">Start shifting →</a>
       </div>
       <p class="hero-meta">Free. No spam. Unsubscribe anytime.</p>
     </div>
     <div class="hero-right">
-      <div class="hero-stripe"></div>
+      <div class="stripe"></div>
       <div class="hero-issue-badge">
         <span class="label">Issue No. 001</span>
-        <span class="subject">You're not underskilled.<br/>You're underleveraged.</span>
+        <span class="subject">You're not underskilled.<br>You're underleveraged.</span>
       </div>
-      <img src="assets/mascot-openarms.png" alt="The Designer's Shift mascot" class="hero-mascot" />
+      <img src="assets/mascot-openarms.png" alt="The Designer's Shift mascot" class="hero-mascot">
     </div>
-  </section>
+  </div>
 
   <!-- PROOF BAR -->
   <div class="proof-bar">
@@ -679,8 +467,8 @@
   <section>
     <div class="what-grid">
       <div class="what-left">
-        <p class="section-eyebrow">What you get</p>
-        <h2>One shift.<br/>Every Friday.</h2>
+        <span class="section-eyebrow">What you get</span>
+        <h2>One shift.<br>Every Friday.</h2>
         <p>Most designers conflate getting better at their craft with building something that rewards them for it. Those are two different games. Most were only taught to play one.</p>
         <p>The Designer's Shift is the other game.</p>
       </div>
@@ -719,44 +507,43 @@
 
   <!-- ISSUE PREVIEW -->
   <section style="padding-top: 0;">
-    <p class="section-eyebrow">Latest issue</p>
+    <span class="section-eyebrow" style="padding-left: 0; display:block; margin-bottom: 1.5rem;">Latest issue</span>
     <div class="issue-preview">
-      <div class="issue-stripe"></div>
+      <div class="stripe"></div>
       <div class="issue-inner">
         <div>
           <p class="issue-label">Issue No. 001</p>
-          <h2 class="issue-title">You're not underskilled.<br/>You're underleveraged.</h2>
-          <p class="issue-body">14 years of hard-won skills. You've shipped products, led teams, navigated the politics. You're genuinely good at this. So why does it feel like the returns have stopped matching the effort?<br/><br/>The gap isn't skill. It's leverage.</p>
+          <h2 class="issue-title">You're not underskilled.<br>You're underleveraged.</h2>
+          <p class="issue-body">14 years of hard-won skills. You've shipped products, led teams, navigated the politics. You're genuinely good at this. So why does it feel like the returns have stopped matching the effort?<br><br>The gap isn't skill. It's leverage.</p>
           <a href="blog.html" class="btn-secondary">Read Issue 001 →</a>
         </div>
-        <img src="assets/mascot-openarms.png" alt="Open arms mascot" class="issue-mascot" />
+        <img src="assets/mascot-openarms.png" alt="Open arms mascot" class="issue-mascot">
       </div>
     </div>
   </section>
 
   <!-- ABOUT STRIP -->
   <div class="about-strip">
-    <div>
-      <div class="about-stat">
-        <span class="stat-num">14</span>
-        <span class="stat-label">years in tech<br/>design & product</span>
-      </div>
+    <div class="about-stat">
+      <span class="stat-num">14</span>
+      <span class="stat-label">years in tech<br>design & product</span>
     </div>
     <div class="about-text">
       <p>Not writing from the other side of success. Writing from the middle of the work — one step ahead on the path, documenting the shift in real time.</p>
       <p>That's more credible than pretending to have arrived.</p>
-      <a href="about.html" style="color: var(--teal); font-weight: 600; font-size: 0.9rem; text-decoration: none;">More about the newsletter →</a>
+      <a href="about.html">More about the newsletter →</a>
     </div>
   </div>
 
   <!-- CTA -->
   <section class="cta-section">
-    <p class="section-eyebrow" style="color: rgba(255,103,0,0.8);">Free. Weekly. Yours.</p>
+    <div class="stripe"></div>
+    <span class="section-eyebrow">Free. Weekly. Yours.</span>
     <h2>Ready to start shifting?</h2>
     <p class="sub">Join designers, PMs, and tech leaders reading every Friday morning.</p>
     <div class="cta-form">
-      <input type="email" class="cta-input" placeholder="your@email.com" />
-      <a href="https://thedesignersshift.beehiiv.com/subscribe" class="btn-orange" style="text-decoration:none;">Subscribe →</a>
+      <input type="email" class="input input-ghost" placeholder="your@email.com">
+      <a href="https://thedesignersshift.beehiiv.com/subscribe" class="btn btn-orange btn-sm" style="padding: 0.85rem 1.5rem; text-decoration:none;">Subscribe →</a>
     </div>
     <p class="cta-meta">No spam. One email a week. Unsubscribe anytime.</p>
   </section>
@@ -764,7 +551,7 @@
   <!-- FOOTER -->
   <footer>
     <div>
-      <div class="footer-wordmark">The Designer's <span>→</span> Shift</div>
+      <a href="index.html" class="footer-wordmark">The Designer's <span class="arrow">→</span> Shift</a>
       <div class="footer-tagline">The shift is personal.</div>
     </div>
     <ul class="footer-links">
@@ -775,7 +562,6 @@
   </footer>
 
   <script>
-    // Scroll reveal for features
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
